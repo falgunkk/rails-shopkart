@@ -11,21 +11,13 @@ class User < ApplicationRecord
   where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
     email="#{auth.info.name}" + "@fbcom"
     user.email   = email.downcase.split.join
-
-    #email = user.email
-    #user.email   = "aa@com"
-
     user.password = Devise.friendly_token[0,20]
     user.uid=auth.uid
     user.username = auth.info.name  
-     # assuming the user model has a name
-    #user.image = auth.info.image # assuming the user model has an image
     user.save!
-    #byebug
-
   end
- end
-def self.new_with_session(params, session)
+  end
+  def self.new_with_session(params, session)
     super.tap do |user|
       if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]
         user.email = data["email"] if user.email.blank?
