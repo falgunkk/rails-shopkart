@@ -13,14 +13,26 @@
   <li>
   <h4> Logged in As:</h4>
   <h4S><%=current_user.email %></h4> 
-  <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>  
-  </li>
-<% else %>
-  <li>
-  <%= link_to('Login', new_user_session_path)  %>  
+   <% if current_user.provider.nil? %>
+               <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+          <% else %>
+               <%#= link_to "Sign out from fb",  users_sign_out_path %>
+                <%= link_to "Sign out from fb", destroy_user_session_path, :method => :delete %>
 
+          <% end %>
+  <%#= link_to('Logout', destroy_user_session_path, :method => :delete) %>  
   </li>
-  <%end%>
+<%# else %>
+  <li>
+  <% else %>
+          <%= link_to "Sign In", new_user_session_path %><br>
+          <%= link_to "Sign Up", new_user_registration_path %>
+     <% end %>
+  <%# if current_user.provider? %>
+  <%#link_to 'Log out of facebook', cancel_user_registration_path %>
+  <%#end%> 
+  </li>
+  
   	<p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <%= yield %>

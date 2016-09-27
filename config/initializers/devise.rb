@@ -52,7 +52,7 @@ Devise.setup do |config|
   # These keys will have whitespace before and after removed upon creating or
   # modifying a user and when used to authenticate or find a user. Default is :email.
   config.strip_whitespace_keys = [:email]
-
+   #config.authentication_keys = [ :login ]
   # Tell if authentication through request.params is enabled. True by default.
   # It can be set to an array that will enable params authentication only for the
   # given strategies, for example, `config.params_authenticatable = [:database]` will
@@ -221,7 +221,9 @@ Devise.setup do |config|
   # "users/sessions/new". It's turned off by default because it's slower if you
   # are using only default views.
   # config.scoped_views = false
-    config.scoped_views = true 
+
+
+    #config.scoped_views = true 
 
   # Configure the default scope given to Warden. By default it's the first
   # devise role declared in your routes (usually :user).
@@ -249,6 +251,9 @@ Devise.setup do |config|
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
+  config.omniauth :facebook, "1175784419127060", "8e6d7581854a35ea81cfefaf13cc9b73"
+  #config.omniauth :facebook, "APP_ID", "APP_SECRET",
+                #callback_url: "CALLBACK_URL"
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
