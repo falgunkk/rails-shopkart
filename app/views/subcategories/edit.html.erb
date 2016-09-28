@@ -1,0 +1,14 @@
+<h2> Edit </h2> 
+<%= form_for([@category, @category.subcategories.build]) do |f| %>
+  <p>
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </p>
+  
+  <p>
+    <%= f.submit "save subcategory" %>
+  </p>
+<% end %>
+
+
+  

@@ -1,3 +1,12 @@
-<li><%#= link_to 'Sign Up', new_user_registration_path %></li><br>
-<%= image_tag "welcome1.png" %><br>
 
+<%= image_tag "welcome1.png" %><br>
+<% if user_signed_in? %>
+<% if current_user.role =='owner' %>
+<%= link_to 'Users list', {:controller => :userlist, :action => :index} %>
+<%end%>
+<%end%>
+<% if user_signed_in? %>
+<% if current_user.role =='vendor' %>
+<%= link_to 'Add products',categories_path %>
+<%end%>
+<%end%>

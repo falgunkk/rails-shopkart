@@ -1,0 +1,22 @@
+ <h2><%= link_to 'Create new user' ,new_userlist_path %><h2>
+    <table>
+      <tr>
+    <th><font size="4">Email</th></font>
+    <th><font size="4">Role</th></font>
+      </tr>
+          <% @users.each do |user| %>
+          <% unless user.role == 'admin' %>
+            <tr>
+              <td><%=  user.email %></td>
+              <td><%=  user.role %></td>
+              <td><%= link_to 'Edit', edit_userlist_path(user) %></td>
+              <td>
+               <%= link_to "Delete user", userlist_path(user), :data => { :confirm => "Are you sure?" }, :method => :delete%>
+             </td>
+      </tr>
+          <%end%>
+          <%end%>
+    <table>
+    <%= link_to 'add category',new_category_path %><br> 
+    <%= link_to 'categories list',categories_path%>
+          

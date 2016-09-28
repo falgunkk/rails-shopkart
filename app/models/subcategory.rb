@@ -1,5 +1,5 @@
-# for subcategories like mobile,computer etc.
 class Subcategory < ApplicationRecord
-  has_many:section
-  belongs_to:category
+	belongs_to :category
+	has_many:items
+
 end

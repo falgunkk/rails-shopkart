@@ -19,8 +19,5 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
    render :text => "log in failure"
   end
 
-  # def facebook_logout
 
-  #   session["devise.facebook_data"]=nil
-  #  redirect_to root_path
 end

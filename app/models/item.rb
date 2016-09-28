@@ -1,4 +1,3 @@
-# for each item
 class Item < ApplicationRecord
-  belongs_to:section
+  belongs_to :subcategory
 end

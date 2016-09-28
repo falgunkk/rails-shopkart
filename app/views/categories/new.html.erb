@@ -1,0 +1,14 @@
+<h2>Adding category</h2>
+<%= form_for(:category, url: categories_path, method: 'post') do |f| %>
+<p>
+    <%= f.label :Name %><br>
+    <%= f.text_field :name %>
+</p>
+ 
+    <%= f.submit "Save category" %>
+</p>
+<%end%>
+
+
+
+  

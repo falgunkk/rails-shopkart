@@ -1,0 +1,17 @@
+<%= link_to "add subcategories",new_category_subcategory_path %><br>
+<table>
+	<tr>
+		<th><font size="4">Subategories</th></font>
+	</tr>
+<% @subcategories.each do |subcategory| %>
+<tr>
+<td><%=  link_to subcategory.name, items_path %></td>
+ <td><%#= link_to 'Edit', edit_category_subcategory_path(@category,subcategory) %></td>
+            <td>
+            <%= link_to "Delete ", category_subcategory_path(@category,subcategory), :data => { :confirm => "Are you sure?" }, :method => :delete%>
+            </td>
+        </tr><br>
+<%end%>
+<table>       
+
+ 
