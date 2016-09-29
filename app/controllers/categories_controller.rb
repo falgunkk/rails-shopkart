@@ -1,25 +1,25 @@
+# this controller defines all actions on categories.
 class CategoriesController < ApplicationController
-	def index
-		@categories=Category.all
-	end
+  def index
+    @categories = Category.all
+  end
 
   def new
-        @category = Category.new 
-    end
+    @category = Category.new
+  end
 
   def show
-      #@user = User.find_by_id(params[:id])
-      @category = Category.find(params[:id])
+    @category = Category.find(params[:id])
   end
 
   def edit
-        @category= Category.find(params[:id])
-    end
+    @category = Category.find(params[:id])
+  end
 
   def create
-    @category=Category.new(secure_params)
+    @category = Category.new(secure_params)
     if @category.save
-      redirect_to categories_path, :notice => "category created."
+      redirect_to categories_path, :notice => "category created"
       else
       redirect_to categories_path, :notice => "category not created."
     end
@@ -41,12 +41,6 @@ class CategoriesController < ApplicationController
   end
 
   private
-
-  #def admin_only
-    #unless current_user.admin?
-      #redirect_to :back, :alert => "Access denied."
-    #end
-  #end
 
   def secure_params
     params.require(:category).permit(:name)

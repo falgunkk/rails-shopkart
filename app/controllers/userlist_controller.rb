@@ -1,26 +1,27 @@
+# this controller defines  acions for admin
 class UserlistController < ApplicationController
-	def index
-		@users=User.all
-	end
+  def index
+    @users = User.all
+  end
 
   def new
-        @user = User.new
-    end
+    @user = User.new
+  end
 
   def show
-      #@user = User.find_by_id(params[:id])
-      @user = User.find(params[:id])
+    # @user = User.find_by_id(params[:id])
+    @user = User.find(params[:id])
   end
 
   def edit
-        @user = User.find(params[:id])
-    end
+    @user = User.find(params[:id])
+  end
 
   def create
-    @user=User.new(secure_params)
+    @user = User.new(secure_params)
     if @user.save
       redirect_to userlist_index_path, :notice => "User created."
-      else
+    else
       redirect_to userlist_index_path, :notice => "User not created."
     end
   end
@@ -42,13 +43,8 @@ class UserlistController < ApplicationController
 
   private
 
-  #def admin_only
-    #unless current_user.admin?
-      #redirect_to :back, :alert => "Access denied."
-    #end
-  #end
-
   def secure_params
     params.require(:user).permit(:email, :password, :password_confirmation,:role)
   end
+
 end

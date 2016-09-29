@@ -1,0 +1,22 @@
+<h2> Add an item </h2>
+<%= form_for @item, :url => { :action => "create" } do |f| %>
+<p>
+  <p>
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :description %><br>
+    <%= f.text_area :description %>
+  </p>
+  <p>
+    <%= f.label :price %><br>
+    <%= f.text_field :price %>
+  </p>
+
+  
+  <p>
+    <%= f.submit "save" %>
+  </p>
+<% end %>
+ 
