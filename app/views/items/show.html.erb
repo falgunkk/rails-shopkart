@@ -1,0 +1,4 @@
+<font size = '5' ><%= @item.name %></font><br><br>
+<font color = 'red'><%= "#{@item.price}"+"$" %></font><br><br>
+<%= @item.description %><br><br>
+<%= image_tag @item.image.url(:medium) %>

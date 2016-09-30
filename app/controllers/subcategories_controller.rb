@@ -28,6 +28,7 @@ class SubcategoriesController < ApplicationController
   def update
     @category = Category.find(params[:category_id])
     @subcategory = @category.subcategories.find(params[:id])
+    
     if @subcategory.update(sub_params)
       redirect_to category_subcategories_path, :notice => "subcategory updated."
     else

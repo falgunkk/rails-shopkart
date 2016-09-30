@@ -11,6 +11,9 @@
           <td>
            <%= link_to "Delete ", category_subcategory_path(@category,subcategory), :data => { :confirm => "Are you sure?" }, :method => :delete%>
           </td>
+          <td>
+           <%= link_to "Edit ", edit_category_subcategory_path(@category,subcategory) %>
+          </td>
     </tr><br>
     <%end%>
 <table>       

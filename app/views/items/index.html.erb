@@ -2,14 +2,19 @@
 <table>
 	<tr>
 		<th><font size="4">name</th></font>
-		<th><font size="4">price</th></font>
+		<th><font size="4">price(in rupees)</th></font>
 		<th><font size="4">description</th></font>
 	</tr>
     <% @items.each do |item| %>
     <tr>
-        <td> <%=  item.name %> </td>
+         <%#= link_to item.name, category_subcategory_item_path(@category,@subcategory,item) %> 
+         <%#= link_to item.name, :action => :show, :id => item.id %>
+        <td><%= link_to item.name,  category_subcategory_item_path(:id => item.id )%></td>
         <td> <%= item.price %> </td>
         <td><%= item.description %></td>
+        <td><%= image_tag item.image.url(:thumb)  %></td>
+        <td><%= link_to 'Edit' ,edit_category_subcategory_item_path(:id => item.id ) %></td>
+        <td><%= link_to 'Delete' ,category_subcategory_item_path(:id => item.id ), :data => { :confirm => "Are you sure?" }, :method => :delete    %></td>
     </tr><br>
     <%end%>
 <table>       

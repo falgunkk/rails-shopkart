@@ -1,13 +1,14 @@
-<%= form_for([@category, @category.subcategories.build]) do |f| %>
+<h2> New </h2>
+<%= form_for @subcategory, :url => { :action => "create" } do |f| %>
+<p>
   <p>
     <%= f.label :name %><br>
     <%= f.text_field :name %>
   </p>
-  
   <p>
     <%= f.submit "save subcategory" %>
   </p>
 <% end %>
-
+ 
 
   

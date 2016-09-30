@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160928114337) do
+ActiveRecord::Schema.define(version: 20160930085501) do
 
   create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.datetime "created_at", null: false
@@ -20,13 +20,17 @@ ActiveRecord::Schema.define(version: 20160928114337) do
 
   create_table "items", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
-    t.text     "description",    limit: 65535
+    t.text     "description",        limit: 65535
     t.string   "price"
     t.string   "DECIMAL10"
     t.string   "DECIMAL2"
     t.integer  "subcategory_id"
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
     t.index ["subcategory_id"], name: "index_items_on_subcategory_id", using: :btree
   end
 
