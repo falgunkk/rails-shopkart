@@ -11,12 +11,22 @@ class ItemsController < ApplicationController
   end
 
   def show 
-    @category = Category.find(params[:category_id])
-    @subcategory = @category.subcategories.find(params[:subcategory_id])
+      @category = Category.find(params[:category_id])
+      @subcategory = @category.subcategories.find(params[:subcategory_id])
     #@subcategory = Subcategory.find(params[:subcategory_id])
-    @item = @subcategory.items.find(params[:id])
+     @item = @subcategory.items.find(params[:id])
     #@item = Items.find(params[:id])
   end
+
+  def search
+  end
+
+  def searchresults
+    @category = Category.find(params[:cat_id])
+    @subcategory = @category.subcategories.find(params[:sub_id])
+    @results = @subcategory.items.where("name LIKE '%#{params[:word]}%' ")
+  end
+
 
   def edit
     @category = Category.find(params[:category_id])

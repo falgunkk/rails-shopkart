@@ -10,6 +10,17 @@ class SubcategoriesController < ApplicationController
     @subcategory = @category.subcategories.new
   end
 
+  def search
+
+  end
+
+  def searchresults
+
+    @category = Category.find(params[:id])
+    @results = @category.subcategories.where("name LIKE '%#{params[:word]}%' ")
+
+  end
+
   def edit
     @category = Category.find(params[:category_id])
     @subcategory = @category.subcategories.find(params[:id])

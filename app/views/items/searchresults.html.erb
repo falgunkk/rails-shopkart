@@ -1,0 +1,9 @@
+<% console %>
+<h3> search results item</h3>
+<%if @results.empty? %>
+<h3> No results found</h3>
+<% else %>
+<% @results.each do |result| %>
+<%= link_to result.name, category_subcategory_item_path(category_id: params[:cat_id], subcategory_id: params[:sub_id], :id => result.id ) %><br>
+<% end %>
+<% end %>

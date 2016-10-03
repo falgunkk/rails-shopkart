@@ -1,0 +1,15 @@
+<h3> search item</h3>
+<% console %>
+<%= form_tag( { :controller => 'items', :action => 'searchresults' }, {:method => "get" }) do %>
+  <%= label_tag(:word, "Search for items:") %>
+  <%= text_field_tag(:word,) %>
+  <%= hidden_field_tag 'sub_id', params[:subcategory_id]  %>
+  <%= hidden_field_tag 'cat_id', params[:category_id]  %>
+  <%= submit_tag("Search") %>
+<% end %> 
+
+
+
+
+
+

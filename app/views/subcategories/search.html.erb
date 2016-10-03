@@ -1,0 +1,25 @@
+<%#= params[:category_id] %>
+<%#console%>
+<%#= form_tag( "/searchresultssub", method: "get") do %>
+<%= form_tag( { :controller => "subcategories", :action => "searchresults" }, { :method => "get" })do %>
+  <%= label_tag(:word, "Search for subcategory:") %>
+  <%= text_field_tag(:word,) %>
+  <%= hidden_field_tag 'id', params[:category_id]  %>
+  <%= submit_tag("Search") %>
+<% end %>
+
+
+
+
+<%#= form_for :subcategory, :url => {:controller => "subcategories", :action => "searchresults" }, method:"get" do |f| %>
+<p>
+<%#= f.label :search %>
+<%#= f.text_field :word %>
+</p>
+
+</p>
+ 
+    <%#= f.submit "Search" %>
+</p>
+
+<%# end %>

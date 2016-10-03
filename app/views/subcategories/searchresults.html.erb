@@ -1,0 +1,11 @@
+<%# console %>
+
+<h3>serch results subcategory</h3>
+<%if @results.empty? %>
+<h3> No results found</h3>
+<% else %>
+<% @results.each do |result| %>
+<%= link_to result.name,category_subcategory_items_path(@category,result)  %><br>
+<% end %>
+<% end %>
+

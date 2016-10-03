@@ -1,4 +1,6 @@
 <%= link_to "add subcategories",new_category_subcategory_path %><br>
+<%#= @category.id %>
+<%= link_to 'search subcategory', searchsub_path(category_id:@category.id)%>
 <table>
 	<tr>
 		<th><font size="4">Subategories</th></font>

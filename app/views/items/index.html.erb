@@ -1,4 +1,6 @@
 <%= link_to "Add item ",new_category_subcategory_item_path() %><br>
+<% console %>
+<%= link_to "Search item",searchitem_path(subcategory_id: @subcategory.id,category_id: params[:category_id] ) %>
 <table>
 	<tr>
 		<th><font size="4">name</th></font>

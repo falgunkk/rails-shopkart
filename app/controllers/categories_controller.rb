@@ -16,6 +16,14 @@ class CategoriesController < ApplicationController
     @category = Category.find(params[:id])
   end
 
+  def search
+
+  end
+
+  def searchresults
+    @results = Category.where("name LIKE '%#{params[:word]}%' ")
+  end
+
   def create
     @category = Category.new(secure_params)
     if @category.save

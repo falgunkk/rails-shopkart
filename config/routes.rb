@@ -5,6 +5,14 @@ Rails.application.routes.draw do
   resources :userlist
   #resources :items
   #resources :sections
+
+  get '/search' => 'categories#search'
+  get '/searchresults' => 'categories#searchresults'
+  get '/searchsub' => 'subcategories#search'
+  get '/searchresultssub' => 'subcategories#searchresults'
+  get '/searchitem' => 'items#search'
+  get '/searchresultsitems' =>'items#searchresults'
+
   resources :categories do
   resources :subcategories do
   resources :items
