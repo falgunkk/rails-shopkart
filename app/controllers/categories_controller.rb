@@ -1,5 +1,7 @@
 # this controller defines all actions on categories.
 class CategoriesController < ApplicationController
+  before_action :authenticate_user!
+  before_filter :owner_only, :except => [:index, :search, :searchresults]
   def index
     @categories = Category.all
   end
@@ -17,7 +19,6 @@ class CategoriesController < ApplicationController
   end
 
   def search
-
   end
 
   def searchresults
@@ -28,7 +29,7 @@ class CategoriesController < ApplicationController
     @category = Category.new(secure_params)
     if @category.save
       redirect_to categories_path, :notice => "category created"
-      else
+    else
       redirect_to categories_path, :notice => "category not created."
     end
   end
@@ -46,6 +47,12 @@ class CategoriesController < ApplicationController
     @category = Category.find(params[:id])
     @category.destroy
     redirect_to categories_path, :notice => "category deleted."
+  end
+
+  def owner_only
+    unless current_user.owner?
+      redirect_to root_path, :notice => "Access denied."
+    end
   end
 
   private

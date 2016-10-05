@@ -1,11 +1,14 @@
 <%= image_tag "welcome1.png" %><br>
 <% if user_signed_in? %>
 <% if current_user.role =='owner' %>
-<%= link_to 'Users list', {:controller => :userlist, :action => :index} %>
+<%= link_to 'Users list', {:controller => :userlist, :action => :index} %><br>
 <%end%>
 <%end%>
 <% if user_signed_in? %>
 <% if current_user.role =='vendor' %>
-<%= link_to 'Add products',categories_path %>
+<%= link_to 'Add products',add_item_path %><br>
 <%end%>
 <%end%>
+<% if user_signed_in? %>
+<%= link_to 'categories list',categories_path%>
+<% end %>

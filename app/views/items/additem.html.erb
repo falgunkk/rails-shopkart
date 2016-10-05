@@ -1,27 +1,29 @@
-<%# console %>
-<%#= select_tag "category_id", options_from_collection_for_select(Category.all, "id", "name") %>
-<%#= select_tag "subcategory_id", options_from_collection_for_select(@category.subcategories.all, "id", "name") %>
-<h2> Add an item </h2>
-<%= form_for :item, :url => { :action => "create" } do |f| %>
-<p>
+<h2> Add an Item </h2>
+<%= form_for(:item, url: item_save_path) do |f| %>
   <p>
+    <%#= select_tag "category_id", options_from_collection_for_select(Category.all, "id", "name") %><br>
+    <%= select_tag "subcategory_id", options_from_collection_for_select( Subcategory.all, "id", "name") %><br><br>
     <%= f.label :name %><br>
     <%= f.text_field :name %>
   </p>
+
   <p>
     <%= f.label :description %><br>
     <%= f.text_area :description %>
   </p>
+
   <p>
     <%= f.label :price %><br>
     <%= f.text_field :price %>
   </p>
+
   <p>
     <%= f.label :'upload item image' %><br>
     <%=f.file_field :image %>
-  </p>
-  <br>
+  </p><br>
+  
   <p>
+
     <%= f.submit "save" %>
   </p>
 <% end %>

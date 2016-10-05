@@ -1,9 +1,14 @@
+<% if current_user.role == "owner" %>
 <%= link_to "add subcategories",new_category_subcategory_path %><br>
+<% end %>
 <%#= @category.id %>
-<%= link_to 'search subcategory', searchsub_path(category_id:@category.id)%>
+<%= link_to 'search subcategory', searchsub_path(category_id:@category.id)%><br><br>
+<% if @category.subcategories.all.empty? %>
+<h3> No Subcategories </h3>
+<% else %>
 <table>
 	<tr>
-		<th><font size="4">Subategories</th></font>
+		<th><font size="4">Subcategories</th></font>
 	</tr>
     <% @subcategories.each do |subcategory| %>
     <tr>
@@ -11,13 +16,16 @@
 	      <%=  link_to subcategory.name, category_subcategory_items_path(@category,subcategory) %>
           </td>
           <td>
+           <% if current_user.role == "owner" %>
            <%= link_to "Delete ", category_subcategory_path(@category,subcategory), :data => { :confirm => "Are you sure?" }, :method => :delete%>
           </td>
           <td>
            <%= link_to "Edit ", edit_category_subcategory_path(@category,subcategory) %>
+           <% end %>
           </td>
-    </tr><br>
+    </tr>
     <%end%>
-<table>       
+<table>   
+<% end %>    
 
  

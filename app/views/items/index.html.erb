@@ -1,22 +1,29 @@
-<%= link_to "Add item ",new_category_subcategory_item_path() %><br>
-<% console %>
-<%= link_to "Search item",searchitem_path(subcategory_id: @subcategory.id,category_id: params[:category_id] ) %>
+<% if current_user.role == "vendor" %>
+<%= link_to "Add item ",add_item_path() %><br>
+<% end %>
+<%= link_to "Search item",searchitem_path(subcategory_id: @subcategory.id,category_id: params[:category_id] ) %><br><br><br><br>
+<% if @subcategory.items.empty? %>
+<h3> No Items found </h3>
+<% else %>
 <table>
 	<tr>
-		<th><font size="4">name</th></font>
-		<th><font size="4">price(in rupees)</th></font>
-		<th><font size="4">description</th></font>
+		<th><font size="4">Name</th></font>
+		<th><font size="4">Price(in Rupees)</th></font>
+		<th><font size="4">Description</th></font>
 	</tr>
     <% @items.each do |item| %>
     <tr>
-         <%#= link_to item.name, category_subcategory_item_path(@category,@subcategory,item) %> 
-         <%#= link_to item.name, :action => :show, :id => item.id %>
+        <%#= link_to item.name, category_subcategory_item_path(@category,@subcategory,item) %> 
+        <%#= link_to item.name, :action => :show, :id => item.id %>
         <td><%= link_to item.name,  category_subcategory_item_path(:id => item.id )%></td>
-        <td> <%= item.price %> </td>
+        <td><%= item.price %></td>
         <td><%= item.description %></td>
-        <td><%= image_tag item.image.url(:thumb)  %></td>
+        <td><%= image_tag item.image.url(:thumb)%></td>
+        <% if current_user.role == "vendor" %>
         <td><%= link_to 'Edit' ,edit_category_subcategory_item_path(:id => item.id ) %></td>
         <td><%= link_to 'Delete' ,category_subcategory_item_path(:id => item.id ), :data => { :confirm => "Are you sure?" }, :method => :delete    %></td>
-    </tr><br>
+        <% end %>
+    </tr>
     <%end%>
 <table>       
+<% end %>

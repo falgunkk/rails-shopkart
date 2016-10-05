@@ -2,6 +2,8 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
+  #has_many :items
+
   enum role: [:customer, :vendor, :owner]
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
@@ -12,7 +14,8 @@ class User < ApplicationRecord
     email="#{auth.info.name}" + "@fbcom"
     user.email   = email.downcase.split.join
     user.password = Devise.friendly_token[0,20]
-    user.uid=auth.uid
+    user.uid = auth.uid
+    user.role = "customer"
     user.username = auth.info.name  
     user.save!
   end

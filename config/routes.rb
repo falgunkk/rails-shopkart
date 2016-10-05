@@ -13,9 +13,14 @@ Rails.application.routes.draw do
   get '/searchitem' => 'items#search'
   get '/searchresultsitems' =>'items#searchresults'
 
+  get '/add_item'  => 'items#additem'
+  post'/item_save' => 'items#create'
+  get '/item_save' => 'items#index'
+
+
   resources :categories do
-  resources :subcategories do
-  resources :items
-  end
+    resources :subcategories do
+      resources :items, only: [:show, :index, :edit, :destroy, :index, :update]
+    end
   end
 end

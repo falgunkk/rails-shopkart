@@ -3,5 +3,5 @@ class Subcategory < ApplicationRecord
   validates :name, presence: true,
           length: { minimum: 4 }
   belongs_to :category
-  has_many:items
+  has_many:items, dependent: :destroy
 end

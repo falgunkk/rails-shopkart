@@ -1,5 +1,8 @@
 # this controller defines  acions for admin
 class UserlistController < ApplicationController
+  before_action :authenticate_user!
+  before_filter :owner_only
+
   def index
     @users = User.all
   end
@@ -40,6 +43,14 @@ class UserlistController < ApplicationController
     @user.destroy
     redirect_to userlist_index_path, :notice => "User deleted."
   end
+
+  def owner_only
+    unless current_user.owner?
+      redirect_to root_path, :notice => "Access denied."
+
+    end
+  end
+
 
   private
 

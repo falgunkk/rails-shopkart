@@ -5,7 +5,7 @@
     <th><font size="4">Role</th></font>
       </tr>
           <% @users.each do |user| %>
-          <% unless user.role == 'admin' %>
+          <%# unless user.role == 'admin' %>
             <tr>
               <td><%=  user.email %></td>
               <td><%=  user.role %></td>
@@ -14,9 +14,8 @@
                <%= link_to "Delete user", userlist_path(user), :data => { :confirm => "Are you sure?" }, :method => :delete%>
              </td>
       </tr>
+          <%#end%>
           <%end%>
-          <%end%>
-    <table>
-    <%#= link_to 'add category',new_category_path %><br> 
+    <table> 
     <%= link_to 'categories list',categories_path%>
           

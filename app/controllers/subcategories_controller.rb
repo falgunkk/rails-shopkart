@@ -1,5 +1,8 @@
 # this controller defines all actions upon subcategories
 class SubcategoriesController < ApplicationController
+  
+  before_action :authenticate_user!
+  before_filter :owner_only, :except => [:index, :search, :searchresults]
   def index
     @category = Category.find(params[:category_id])
     @subcategories = @category.subcategories.all
@@ -11,14 +14,11 @@ class SubcategoriesController < ApplicationController
   end
 
   def search
-
   end
 
   def searchresults
-
     @category = Category.find(params[:id])
     @results = @category.subcategories.where("name LIKE '%#{params[:word]}%' ")
-
   end
 
   def edit
@@ -39,7 +39,6 @@ class SubcategoriesController < ApplicationController
   def update
     @category = Category.find(params[:category_id])
     @subcategory = @category.subcategories.find(params[:id])
-    
     if @subcategory.update(sub_params)
       redirect_to category_subcategories_path, :notice => "subcategory updated."
     else
@@ -52,6 +51,12 @@ class SubcategoriesController < ApplicationController
     @subcategory = @category.subcategories.find(params[:id])
     @subcategory.destroy
     redirect_to category_subcategories_path, :notice => "subcategory deleted."
+  end
+
+  def owner_only
+    unless current_user.owner?
+      redirect_to root_path, :notice => "Access denied."
+    end
   end
 
   private
