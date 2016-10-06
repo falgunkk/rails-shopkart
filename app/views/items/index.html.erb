@@ -19,6 +19,11 @@
         <td><%= item.price %></td>
         <td><%= item.description %></td>
         <td><%= image_tag item.image.url(:thumb)%></td>
+        <% if current_user.role == "customer" %>
+        <td><%#= link_to 'Add to cart', new_cart_path(:id => item.id, subcategory_id: @subcategory.id,category_id: params[:category_id] ) %>
+            <%= link_to 'Add to cart', carts_path( :controller => 'carts', :action => 'create', :id => item.id, subcategory_id: @subcategory.id,category_id: params[:category_id]), method: :post %>
+            <%#= link_to "Add to cart", {:controller => :carts, :action => :create} , :method => :post, :subcategory_id @subcategory.id %>
+        <% end %>    
         <% if current_user.role == "vendor" %>
         <td><%= link_to 'Edit' ,edit_category_subcategory_item_path(:id => item.id ) %></td>
         <td><%= link_to 'Delete' ,category_subcategory_item_path(:id => item.id ), :data => { :confirm => "Are you sure?" }, :method => :delete    %></td>
@@ -27,3 +32,4 @@
     <%end%>
 <table>       
 <% end %>
+<% console%>

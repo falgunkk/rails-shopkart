@@ -1,4 +1,6 @@
+<% console %>
 <font size = '5' ><%= @item.name %></font><br><br>
 <font color = 'red'><%= "#{@item.price}"+"$" %></font><br><br>
 <%= @item.description %><br><br>
-<%= image_tag @item.image.url(:medium) %>
+<%= image_tag @item.image.url(:medium) %><br><br>
+<%= link_to 'Add to cart', carts_path( :controller => 'carts', :action => 'create', :id => params[:id], subcategory_id: params[:subcategory_id],category_id: params[:category_id]), method: :post %>

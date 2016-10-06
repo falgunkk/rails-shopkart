@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   root 'home#index'
   resources :userlist
+  resources :carts
   #resources :items
   #resources :sections
 
@@ -16,8 +17,6 @@ Rails.application.routes.draw do
   get '/add_item'  => 'items#additem'
   post'/item_save' => 'items#create'
   get '/item_save' => 'items#index'
-
-
   resources :categories do
     resources :subcategories do
       resources :items, only: [:show, :index, :edit, :destroy, :index, :update]

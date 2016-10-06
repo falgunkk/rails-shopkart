@@ -10,7 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160930085501) do
+ActiveRecord::Schema.define(version: 20161005132202) do
+
+  create_table "carts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
+    t.integer  "user_id"
+    t.string   "name"
+    t.text     "description",        limit: 65535
+    t.decimal  "price",                            precision: 10
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.index ["user_id"], name: "index_carts_on_user_id", using: :btree
+  end
 
   create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.datetime "created_at", null: false
@@ -73,6 +87,7 @@ ActiveRecord::Schema.define(version: 20160930085501) do
     t.index ["username"], name: "index_users_on_username", unique: true, using: :btree
   end
 
+  add_foreign_key "carts", "users"
   add_foreign_key "items", "subcategories"
   add_foreign_key "subcategories", "categories"
 end

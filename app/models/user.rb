@@ -2,7 +2,7 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  #has_many :items
+  has_many :carts
 
   enum role: [:customer, :vendor, :owner]
   devise :database_authenticatable, :registerable,
