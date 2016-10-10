@@ -1,14 +1,14 @@
 <% if current_user.role == "owner" %>
-<%= link_to "add subcategories",new_category_subcategory_path %><br>
+<%= link_to "add subcategories",new_category_subcategory_path ,class: "btn btn-small btn-success"%><br><br>
 <% end %>
 <%#= @category.id %>
-<%= link_to 'search subcategory', searchsub_path(category_id:@category.id)%><br><br>
+<%= link_to 'search subcategory', searchsub_path(category_id:@category.id),class: "btn btn-small btn-success"%><br><br>
 <% if @category.subcategories.all.empty? %>
 <h3> No Subcategories </h3>
 <% else %>
 <table>
 	<tr>
-		<th><font size="4">Subcategories</th></font>
+		<th><u><font size="5">Subcategories</u></font></th>
 	</tr>
     <% @subcategories.each do |subcategory| %>
     <tr>

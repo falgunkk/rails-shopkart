@@ -1,14 +1,21 @@
 <%= image_tag "welcome1.png" %><br>
+<div class = "corner" >
 <% if user_signed_in? %>
 <% if current_user.role =='owner' %>
-<%= link_to 'Users list', {:controller => :userlist, :action => :index} %><br>
+<%= link_to 'Users list', {:controller => :userlist, :action => :index},class: "btn btn-small btn-success" %><br><br><br>
 <%end%>
 <%end%>
 <% if user_signed_in? %>
 <% if current_user.role =='vendor' %>
-<%= link_to 'Add products',add_item_path %><br>
+<%= link_to 'Add products',add_item_path,class: "btn btn-small btn-success" %><br><br>
 <%end%>
 <%end%>
 <% if user_signed_in? %>
-<%= link_to 'categories list',categories_path%>
+<%= link_to 'categories list',categories_path,class: "btn btn-small btn-success"%><br>
 <% end %>
+</div>
+<%# if user_signed_in? %>
+<%#= image_tag current_user.avatar.url(:thumb) %>
+<%# end %>
+
+

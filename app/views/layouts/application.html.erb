@@ -3,41 +3,33 @@
   <head>
     <title>Shoppingcart</title>
     <%= csrf_meta_tags %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>  
   </head>
-
   <body>
-  	 <% if user_signed_in? %>
-  
-  <h4> Logged in:</h4>
-  <h4S><%=current_user.email %></h4> 
-   <% if current_user.provider.nil? %>
-               <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
-          <% else %>
-               <%#= link_to "Sign out from fb",  users_sign_out_path %>
-                <%= link_to "Sign out from fb", destroy_user_session_path, :method => :delete %>
-
-          <% end %>
-   
- 
-  <% else %>
-          <%= link_to "Sign In", new_user_session_path %><br>
-          <%= link_to "Sign Up", new_user_registration_path %>
-     <% end %>
-  <% if user_signed_in? %>
-  <% if current_user.role == "customer" %>
-  <br><%= link_to "My Cart", carts_path %>
-<% end %>
-<% end %>
-
-  <%# if current_user.provider? %>
-  <%#link_to 'Log out of facebook', cancel_user_registration_path %>
-  <%#end%> 
- 
-  
-  	<p class="notice"><%= notice %></p>
+    <div class = "corner" >
+  	<% if user_signed_in? %>
+    <%= link_to "Home",root_path,class: "btn btn-small btn-success" %>
+    <br><h4S><font color = "yellow" ><%=current_user.email %></font></h4> <br><br>
+    <%= image_tag current_user.avatar.url(:thumb) %><br><br>
+    <% if current_user.provider.nil? %>
+      <%= link_to "Sign out", destroy_user_session_path, :method => :delete ,class: "btn btn-small btn-success"%><br>
+      <% else %>
+      <%= link_to "Sign out from fb", destroy_user_session_path, :method => :delete,class: "btn btn-small btn-success"  %><br>
+    <% end %>
+    <% else %>
+      <br><%= link_to "Sign In", new_user_session_path,class: "btn btn-small btn-success" %><br><br><br>
+      <%= link_to "Sign Up", new_user_registration_path,class: "btn btn-small btn-success" %>
+    <% end %>
+    </div>
+    <div class = "corner" >
+    <% if user_signed_in? %>
+      <% if current_user.role == "customer" %>
+        <br><%= link_to "My Cart", carts_path,class: "btn btn-small btn-success" %>
+      <% end %>
+    <% end %>
+    </div>
+    <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <%= yield %>
   </body>

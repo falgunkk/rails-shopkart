@@ -4,6 +4,9 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   has_many :carts
 
+  has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
+  validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
+
   enum role: [:customer, :vendor, :owner]
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
@@ -17,6 +20,9 @@ class User < ApplicationRecord
     user.uid = auth.uid
     user.role = "customer"
     user.username = auth.info.name  
+    user.avatar = auth.info.image.gsub('http:','https:')
+    #user.avatar_file_name = auth.info.image
+    #byebug
     user.save!
   end
   end
@@ -29,5 +35,4 @@ class User < ApplicationRecord
     end
   end
 end
-
 

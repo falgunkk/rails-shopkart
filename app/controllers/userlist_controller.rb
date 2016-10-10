@@ -55,7 +55,7 @@ class UserlistController < ApplicationController
   private
 
   def secure_params
-    params.require(:user).permit(:email, :password, :password_confirmation,:role)
+    params.require(:user).permit(:email, :password, :password_confirmation,:role,:avatar)
   end
 
 end

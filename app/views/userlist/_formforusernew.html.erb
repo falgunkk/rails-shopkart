@@ -12,6 +12,7 @@
 <p>
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation %>
+    <%= f.file_field :avatar %>
 </p>
 <p>
    	<%= f.select(:role,User.roles.keys.map{|role| [role.titleize,role]}) %>

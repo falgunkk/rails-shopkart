@@ -1,11 +1,14 @@
 <% if current_user.carts.empty? %>
 <h3> No Items in Your Cart </h3>
 <% else %>
-<table>
+<div class="container">
+<table class="table table-striped">
 	<tr>
 		<th><font size="4">Name</th></font>
 		<th><font size="4">Price(in Rupees)</th></font>
 		<th><font size="4">Description</th></font>
+        <th></th>
+        <th></th>
 	</tr>
 <% @carts.each do |cart| %>
     <tr>
@@ -13,12 +16,13 @@
          <td><%= cart.price %></td>
          <td><%= cart.description %></td>
          <td><%= image_tag cart.image.url(:thumb)%></td>
-         <td><%= link_to 'Delete', cart_path(:id => cart.id), :data => { :confirm => "Are you sure?" }, :method =>:delete    %></td>
+         <td><%= link_to 'Delete', cart_path(:id => cart.id), :data => { :confirm => "Are you sure?" }, :method =>:delete ,class: "btn btn-small btn-success"   %></td>
          
     </tr>
 
 <% end %>
 <table>
 <% end%>
-<h3><%="Cart  subtotal:" + " (#{@carts.count}" + " item)" %></h3>
-<h3><%= "Total Cost :" + " #{@carts.sum(:price)}" %></h3>
+</div>
+<h3><font color = "orange" ><%="Cart  subtotal:" + " (#{@carts.count}" + " item)" %></font></h3>
+<h3><%= "Total Cost :" + " #{@carts.sum(:price)}" + "$" %></h3>
