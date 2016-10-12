@@ -1,3 +1,58 @@
+<script>
+function count(id){
+var d = new Date();
+var dateText = document.getElementById(id);
+dateText.innerHTML = d;
+
+var seconds = d.getSeconds();
+var minutes = d.getMinutes();
+var hours = d.getHours();
+var day = d.getDay();
+var month =d.getMonth();
+var year =  d.getFullYear(); 
+var t;
+
+function down() {
+    seconds--;
+    if (seconds < 0) {
+        seconds = 60;
+        minutes--;
+        if (minutes < 0) 
+        {
+            minutes = 60;
+            hours--;
+            if (hours < 0)
+            {
+                hours = 24;
+                day--;
+                if (day < 1)
+                {
+                    day =30;
+                    month--;
+                    if(month < 1)
+                    {
+                        month = 12;
+                        year--;
+                    }
+                }
+            }    
+        }
+    }
+    //d = new Date(year, month, day, hours, minutes, seconds, 0);
+    // d = (month)+ ":" + (day) +":" +(year )+":    " +(hours ? (hours > 9 ? hours : "0" + hours) : "00") + ":" + (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds);
+d ="offer ends in " + (hours ? (hours > 9 ? hours : "0" + hours) : "00") + ":" + (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds);
+dateText.innerHTML = d;
+timer();
+}
+function timer() {
+t = setTimeout(down, 1000);
+}
+timer();
+}
+</script>
+
+
+<div class = "corner">
 <% if current_user.role == "vendor" %>
 <%= link_to "Add item ",add_item_path(),class: "btn btn-small btn-success" %><br><br>
 <% end %>
@@ -8,20 +63,18 @@
 <div class="container">
 <table class="table table-striped">
 <thead>
-	<tr>
-		<th><font size="4">Name</th></font>
-		<th><font size="4">Price(in Rupees)</th></font>
-		<th><font size="4">Description</th></font>
+    <tr>
+        <th><font size="4">Name</th></font>
+        <th><font size="4">Price(in Rupees)</th></font>
+        <th><font size="4">Description</th></font>
         <th></th>
         <th></th>
-	</tr>
+    </tr>
 </thead>
     <% @items.each do |item| %>
     <tbody>
     <tr>
-        <%#= link_to item.name, category_subcategory_item_path(@category,@subcategory,item) %> 
-        <%#= link_to item.name, :action => :show, :id => item.id %>
-        <td><%= link_to item.name,  category_subcategory_item_path(:id => item.id )%></td>
+        <td><%= link_to item.name,  category_subcategory_item_path(:id => item.id )%><p id=<%= item.id %> style =  "color:red" ></p></td>
         <td><%= item.price %></td>
         <td><%= item.description %></td>
         <td><%= image_tag item.image.url(:thumb)%></td>
@@ -34,9 +87,12 @@
         <td><%= link_to 'Delete' ,category_subcategory_item_path(:id => item.id ), :data => { :confirm => "Are you sure?" }, :method => :delete  ,class: "btn btn-small btn-success"  %></td>
         <% end %>
         <% end %>
+        <script > count(<%= item.id %>);</script>
     </tr>
     </tbody>
     <%end%>
 <table>   
 </div>    
 <% end %>
+</div>
+

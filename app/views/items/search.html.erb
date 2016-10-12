@@ -1,4 +1,3 @@
-<h3> search item</h3>
 <%= form_tag( { :controller => 'items', :action => 'searchresults' }, {:method => "get" }) do %>
   <%= label_tag(:word, "Search for items:") %>
   <%= text_field_tag(:word,) %>
