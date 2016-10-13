@@ -15,7 +15,8 @@
   </p>
   <p>
     <%= f.label :'upload item image' %><br>
-    <%=f.file_field :image %>
+    <%=f.file_field :image %><br>
+     <%=f.datetime_local_field :enddate, include_seconds: true %>
   </p>
   <br>
   

@@ -20,7 +20,8 @@
  <%= f.hidden_field :userid, :value => current_user.id%>
   <p>
     <%= f.label :'upload item image' %><br>
-    <%=f.file_field :image %>
+    <%=f.file_field :image %><br>
+    <%=f.datetime_local_field :enddate, include_seconds: true %>
   </p><br> 
   <p>
     <%= f.submit "save" %>

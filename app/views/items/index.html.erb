@@ -1,17 +1,25 @@
 <script>
-function count(id){
+function count(id,date){
+
 var d = new Date();
+var ed = new Date(date);
 var dateText = document.getElementById(id);
+var seconds = Math.floor((ed - (d))/1000) - 19800;
+
+if(seconds<=0){
+    d="No offer";
+    dateText.innerHTML = d;
+    return;
+}
+var minutes = Math.floor(seconds/60);
+var hours = Math.floor(minutes/60);
+var days = Math.floor(hours/24);
+
+hours = hours-(days*24);
+minutes = minutes-(days*24*60)-(hours*60);
+seconds = seconds-(days*24*60*60)-(hours*60*60)-(minutes*60);
 dateText.innerHTML = d;
-
-var seconds = d.getSeconds();
-var minutes = d.getMinutes();
-var hours = d.getHours();
-var day = d.getDay();
-var month =d.getMonth();
-var year =  d.getFullYear(); 
 var t;
-
 function down() {
     seconds--;
     if (seconds < 0) {
@@ -24,10 +32,10 @@ function down() {
             if (hours < 0)
             {
                 hours = 24;
-                day--;
-                if (day < 1)
+                days--;
+                if (days < 1)
                 {
-                    day =30;
+                    days =30;
                     month--;
                     if(month < 1)
                     {
@@ -38,9 +46,8 @@ function down() {
             }    
         }
     }
-    //d = new Date(year, month, day, hours, minutes, seconds, 0);
-    // d = (month)+ ":" + (day) +":" +(year )+":    " +(hours ? (hours > 9 ? hours : "0" + hours) : "00") + ":" + (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds);
-d ="offer ends in " + (hours ? (hours > 9 ? hours : "0" + hours) : "00") + ":" + (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds);
+    
+d ="offer ends in " + days +"days" + "\r\n"+(hours ? (hours > 9 ? hours : "0" + hours) : "00") + ":" + (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds);
 dateText.innerHTML = d;
 timer();
 }
@@ -50,7 +57,6 @@ t = setTimeout(down, 1000);
 timer();
 }
 </script>
-
 
 <div class = "corner">
 <% if current_user.role == "vendor" %>
@@ -72,7 +78,7 @@ timer();
     </tr>
 </thead>
     <% @items.each do |item| %>
-    <tbody>
+<tbody>
     <tr>
         <td><%= link_to item.name,  category_subcategory_item_path(:id => item.id )%><p id=<%= item.id %> style =  "color:red" ></p></td>
         <td><%= item.price %></td>
@@ -87,9 +93,9 @@ timer();
         <td><%= link_to 'Delete' ,category_subcategory_item_path(:id => item.id ), :data => { :confirm => "Are you sure?" }, :method => :delete  ,class: "btn btn-small btn-success"  %></td>
         <% end %>
         <% end %>
-        <script > count(<%= item.id %>);</script>
+        <script > count(<%= item.id %>,'<%= item.enddate %>');</script>
     </tr>
-    </tbody>
+</tbody>
     <%end%>
 <table>   
 </div>    

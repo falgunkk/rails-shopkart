@@ -41,7 +41,7 @@ class ItemsController < ApplicationController
     @subcategory = Subcategory.find(params[:subcategory_id])
     # @subcategory = Subcategory.find(params[:item][:subcategory_id])
     @item = @subcategory.items.create(item_params)
-    byebug
+
     if @item.save
       # redirect_to  category_subcategory_items_path(:subcategory_id => params[:subcategory_id]), :notice => "Item created."
       # render text: 'Saved'
@@ -85,7 +85,7 @@ class ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:name,:description, :price, :image,:userid)
+    params.require(:item).permit(:name,:description, :price, :image,:userid,:enddate)
   end
 
 end
