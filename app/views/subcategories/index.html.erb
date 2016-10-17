@@ -18,10 +18,10 @@
           </td>
           <td>
            <% if current_user.role == "owner" %>
-           <%= link_to "Delete ", category_subcategory_path(@category,subcategory), :data => { :confirm => "Are you sure?" }, :method => :delete%>
+           <%= link_to "Delete ", category_subcategory_path(@category,subcategory), :data => { :confirm => "Are you sure?" }, :method => :delete,class: "btn btn-small btn-success" %>
           </td>
           <td>
-           <%= link_to "Edit ", edit_category_subcategory_path(@category,subcategory) %>
+           <%= link_to "Edit ", edit_category_subcategory_path(@category,subcategory),class: "btn btn-small btn-success" %>
            <% end %>
           </td>
     </tr>

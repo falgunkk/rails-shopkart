@@ -8,6 +8,8 @@
   </head>
   <body>
     <div class = "corner" >
+    <p class="notice"><font color = "green" ><%= notice %></p></font>
+    <p class="alert"><%= alert %></p>
   	<% if user_signed_in? %>
     <%= link_to "Home",root_path,class: "btn btn-small btn-success" %>
     <br><h4S><font color = "yellow" ><%=current_user.email %></font></h4> <br><br>
@@ -29,8 +31,6 @@
       <% end %>
     <% end %>
     </div>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
     <%= yield %>
   </body>
 </html>

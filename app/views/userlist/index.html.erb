@@ -1,22 +1,23 @@
  <div class = "corner" >
  <h2><%= link_to 'Create new user' ,new_userlist_path,class: "btn btn-small btn-success" %><h2><br>
-    <table>
-      <tr>
-    <th><font size="4">Email</th></font>
-    <th><font size="4">Role</th></font>
-      </tr>
-          <% @users.each do |user| %>
-          <%# unless user.role == 'admin' %>
-            <tr>
-              <td><%=  user.email %></td>
-              <td><%=  user.role %></td>
-              <td><%= link_to 'Edit', edit_userlist_path(user),class: "btn btn-small btn-success" %></td>
-              <td>
-               <%= link_to "Delete user", userlist_path(user), :data => { :confirm => "Are you sure?" }, :method => :delete,class: "btn btn-small btn-success"%>
-             </td>
-      </tr>
-          <%#end%>
-          <%end%>
-    <table> 
-    <%= link_to 'categories list',categories_path,class: "btn btn-small btn-success"%>
+ <div class="container">
+ <table class="table table-striped">
+    <tr>
+        <th><font size="4">Email</th></font>
+        <th><font size="4">Role</th></font>
+        <th></th>
+        <th></th>
+    </tr>
+    <% @users.each do |user| %>
+    <tr>
+        <td><%=  user.email %></td>
+        <td><%=  user.role %></td>
+        <td><%= link_to 'Edit', edit_userlist_path(user),class: "btn btn-small btn-success" %></td>
+        <td>
+        <%= link_to "Delete user", userlist_path(user), :data => { :confirm => "Are you sure?" }, :method => :delete,class: "btn btn-small btn-success"%>
+        </td>
+    </tr>
+    <%end%>
+<table> 
+<%= link_to 'categories list',categories_path,class: "btn btn-small btn-success"%>
 </div>
