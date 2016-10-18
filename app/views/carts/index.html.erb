@@ -12,7 +12,9 @@
 	</tr>
     <% @carts.each do |cart| %>
     <tr>
-         <td><%= link_to cart.name, cart_path(:id => cart.id) %></td>
+         <td><%= link_to cart.name, cart_path(:id => cart.id) %>
+         <font color = "red"><%= cart.quantity %></font>
+         </td>
          <td><%= cart.price %></td>
          <td><%= cart.description %></td>
          <td><%= image_tag cart.image.url(:thumb)%></td>

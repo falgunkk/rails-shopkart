@@ -86,6 +86,7 @@ timer();
         <td><%= image_tag item.image.url(:thumb)%></td>
         <% if current_user.role == "customer" %>
         <td><%= link_to 'Add to cart', carts_path( :controller => 'carts', :action => 'create', :id => item.id, subcategory_id: @subcategory.id,category_id: params[:category_id]), method: :post,class: "btn btn-small btn-success" %>
+            <%#= number_field_tag 'quantity', 1, within: 1...10 %>
         <% end %>    
         <% if current_user.role == "vendor" %>
         <% if item.userid == current_user.id %>
