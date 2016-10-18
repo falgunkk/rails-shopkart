@@ -25,6 +25,10 @@
 <table>
 <% end%>
 </div>
+<% sum = 0 %>
+<% @carts.each do |cart| %>
+<% sum = sum + (cart.price * cart.quantity)    %>
+<% end %>
 <h3><font color = "orange" ><%="Cart  subtotal:" + " (#{@carts.count}" + " item)" %></font></h3>
 <h3><%#= "Total Cost :" + " #{@carts.sum(:price)}" + "$" %></h3>
-<h3><%= "Total Cost :" + " #{@carts.sum(:price)}" + "$" %></h3>
+<h3><%= "Total Cost :" + " #{sum}" + " $" %></h3>
