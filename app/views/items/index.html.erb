@@ -97,9 +97,11 @@ timer();
         <% end %>
         <script > count(<%= item.id %>,'<%= item.enddate %>');</script>
         <% if (item.stock - item.count) > 0 %>
+        <% if current_user.role == "customer" %>
         <br><font color = "red"><%="#{item.stock - item.count}" + "remainig"%></font>
         <% else %>
         <font color = "red"><%= "Out of stock" %></font>
+        <% end %>
         <% end %>
     </tr>
 </tbody>
