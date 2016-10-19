@@ -15,12 +15,13 @@
     <tr>
          <td><%= link_to cart.name, cart_path(:id => cart.id) %></td>
          <td><font color = "red"><%= cart.quantity %></font><br>
-         </td>
+         <%= cart.cartdate %>
          </td>
          <td><%= cart.price %></td>
          <td><%= cart.description %></td>
          <td><%= image_tag cart.image.url(:thumb)%></td>
-         <td><%= link_to 'Delete', cart_path(:id => cart.id), :data => { :confirm => "Are you sure?" }, :method =>:delete ,class: "btn btn-small btn-success"   %></td>   
+         <td><%= link_to 'Delete', cart_path(:id => cart.id), :data => { :confirm => "Are you sure?" }, :method =>:delete ,class: "btn btn-small btn-success"   %><br><br>
+         <%= link_to 'Buy it', buy_path(:id => cart.id), class: "btn btn-small btn-success" %></td> 
     </tr>
     <% end %>
 <table>
