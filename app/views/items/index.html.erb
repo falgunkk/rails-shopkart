@@ -1,3 +1,4 @@
+<!-- < for countdwon timer > -->
 <script>
 function count(id,date){
 
@@ -95,6 +96,11 @@ timer();
         <% end %>
         <% end %>
         <script > count(<%= item.id %>,'<%= item.enddate %>');</script>
+        <% if (item.stock - item.count) > 0 %>
+        <br><font color = "red"><%="#{item.stock - item.count}" + "remainig"%></font>
+        <% else %>
+        <font color = "red"><%= "Out of stock" %></font>
+        <% end %>
     </tr>
 </tbody>
     <%end%>
@@ -102,4 +108,3 @@ timer();
 </div>    
 <% end %>
 </div>
-

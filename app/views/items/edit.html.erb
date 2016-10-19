@@ -22,6 +22,10 @@
      <%= f.label :'End date' %><br>
      <%=f.datetime_local_field :enddate, include_seconds: true %>
   </p>
+  <p>
+    <%= f.label :'Stock' %><br>
+    <%=f.number_field :stock %>
+  </p><br>
   <br>
   <p>
     <%= f.submit "save" %>
