@@ -18,6 +18,7 @@
     <%= f.text_field :price %>
   </p>
  <%= f.hidden_field :userid, :value => current_user.id%>
+ <%= f.hidden_field :count, :value => 1 %>
   <p>
     <%= f.label :'upload item image' %><br>
     <%=f.file_field :image %><br>
