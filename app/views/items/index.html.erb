@@ -99,7 +99,7 @@ timer();
         <% if current_user.role == "customer" %>
         <% if (item.stock - item.count) > 0 %>
         <br><font color = "red"><%="#{item.stock - item.count}" + "remainig"%></font>
-        <% else %>
+        <% else %><br>
         <font color = "red"><%= "Out of stock" %></font>
         <% end %>
         <% end %>
