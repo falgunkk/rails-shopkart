@@ -7,29 +7,30 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>  
   </head>
   <body>
-    <div class = "corner" >
-    <p class="notice"><font color = "green" ><%= notice %></p></font>
-    <p class="alert"><%= alert %></p>
-  	<% if user_signed_in? %>
-    <%= link_to "Home",root_path,class: "btn btn-small btn-success" %>
-    <br><h4S><font color = "yellow" ><%=current_user.email %></font></h4> <br><br>
-    <%= image_tag current_user.avatar.url(:thumb) %><br><br>
-    <% if current_user.provider.nil? %>
-      <%= link_to "Sign out", destroy_user_session_path, :method => :delete ,class: "btn btn-small btn-success"%><br>
-      <% else %>
-      <%= link_to "Sign out from fb", destroy_user_session_path, :method => :delete,class: "btn btn-small btn-success"  %><br>
+    <div class="header">
+    <% if user_signed_in? %>
+    <%= link_to "Home",root_path,class: "btn btn-small btn-success header-item " %> 
+    <li class='dropdown header-right'>
+        <img class='dropbtn'><%= image_tag current_user.avatar.url(:thumb), class: 'avatar-frame' %></img>
+        <div class='dropdown-content'>
+           <%= image_tag current_user.avatar.url(:medium), class: ' avatar-frame ' %>
+           <p><%= current_user.email %></p>
+           <p><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></p>
+        </div>
+    </li>
+    <% if current_user.role == "customer" %>
+      <%= link_to "My Cart", carts_path,class: "btn btn-small btn-success header-right" %>
     <% end %>
-    <% else %>
-      <br><%= link_to "Sign In", new_user_session_path,class: "btn btn-small btn-success" %><br><br><br>
-      <%= link_to "Sign Up", new_user_registration_path,class: "btn btn-small btn-success" %>
     <% end %>
     </div>
+   <!-- header end -->
     <div class = "corner" >
-    <% if user_signed_in? %>
-      <% if current_user.role == "customer" %>
-        <br><%= link_to "My Cart", carts_path,class: "btn btn-small btn-success" %>
-      <% end %>
+    <% unless user_signed_in? %>  
+      <%= link_to "Sign up",  new_user_registration_path ,class: "btn btn-small btn-success"%><br><br>
+      <%= link_to "Sign in", new_user_session_path ,class: "btn btn-small btn-success"%>
     <% end %>
+    <p class="notice"><font color = "green" ><%= notice %></p></font>
+    <p class="alert"><%= alert %></p>
     </div>
     <%= yield %>
   </body>
