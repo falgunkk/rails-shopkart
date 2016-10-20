@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161019100207) do
+ActiveRecord::Schema.define(version: 20161020120652) do
 
   create_table "carts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.datetime "created_at",                                      null: false
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 20161019100207) do
     t.integer  "quantity"
     t.integer  "itemid"
     t.datetime "cartdate"
+    t.integer  "fa"
     t.index ["user_id"], name: "index_carts_on_user_id", using: :btree
   end
 

@@ -17,7 +17,7 @@ class CartsController < ApplicationController
     if (@item.stock - @item.count) > 0
       @item.update_attribute(:count, @item.count + 1)
       unless current_user.carts.exists?(name:  @item.name)
-       @cart = @user.carts.create(:price => @item.price, :name => @item.name, :description => @item.description,:image => @item.image, :quantity => 1,:itemid => @item.id,:cartdate => Time.now)
+       @cart = @user.carts.create(:price => @item.price, :name => @item.name, :description => @item.description,:image => @item.image, :quantity => 1,:itemid => @item.id,:cartdate => Time.now,:fa => 21)
        if @cart.save
        redirect_to carts_path, :notice => "item addedd to cart."
        else
@@ -39,7 +39,7 @@ class CartsController < ApplicationController
   def destroy
     @cart = current_user.carts.find(params[:id])
     @item =Item.find_by_id(@cart.itemid)
-    @item.update_attribute(:count, @item.count - @cart.quantity)
+    @item.update_attribute(:count, @item.count - @cart.quantity + 1)
     @cart.destroy
     redirect_to carts_path, :notice => "item deleted from your cart"
   end
@@ -53,11 +53,25 @@ class CartsController < ApplicationController
   def buy
     @cart = current_user.carts.find(params[:id])
     @item = Item.find_by_id(@cart.itemid)
-    if @cart.cartdate + 20 <= Time.now.utc
-      @item.update_attribute(:count, @item.count - @cart.quantity)
-      @cart.destroy
-      redirect_to carts_path, :notice => "Your item expired. Can,t buy "
+    if @cart.fa == 21
+      if @cart.cartdate + 20 <= Time.now.utc
+        @item.update_attribute(:count, @item.count - 1)
+        @cart.update_attribute(:fa, 25)
+        if @item.count >= @item.stock
+          redirect_to carts_path, :notice => "Your item expired. Can,t buy "
+        else
+          redirect_to carts_path, :notice => "Buy Now "
+        end
+      end 
+    else
+      if @item.count >= @item.stock
+          redirect_to carts_path, :notice => "Your item expired. Can,t buy "
+        else
+          redirect_to carts_path, :notice => "Buy Now "
+        end
     end
+
+
   end
 
 end
