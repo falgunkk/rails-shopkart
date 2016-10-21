@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   post'/item_save' => 'items#create'
   get '/item_save' => 'items#index'
   get '/buy' => 'carts#buy'
+  get '/address' => 'carts#address'
   resources :categories do
     resources :subcategories do
       resources :items, only: [:show, :index, :edit, :destroy, :index, :update]

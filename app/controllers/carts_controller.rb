@@ -57,21 +57,22 @@ class CartsController < ApplicationController
       if @cart.cartdate + 20 <= Time.now.utc
         @item.update_attribute(:count, @item.count - 1)
         @cart.update_attribute(:fa, 25)
-        if @item.count >= @item.stock
-          redirect_to carts_path, :notice => "Your item expired. Can,t buy "
-        else
-          redirect_to carts_path, :notice => "Buy Now "
-        end
-      end 
+      end
+      if @item.count >= @item.stock
+        redirect_to carts_path, :notice => "Your item expired. Can,t buy "
+      else
+        redirect_to address_path, :notice => "Buy Now "
+      end
     else
       if @item.count >= @item.stock
-          redirect_to carts_path, :notice => "Your item expired. Can,t buy "
-        else
-          redirect_to carts_path, :notice => "Buy Now "
-        end
+        redirect_to carts_path, :notice => "Your item expired. Can,t buy "
+      else
+        redirect_to address_path, :notice => "Buy Now "
+      end
     end
+  end
 
-
+  def address
   end
 
 end
