@@ -4,6 +4,7 @@ class UserlistController < ApplicationController
   before_filter :owner_only
 
   def index
+   
     @users = User.all
   end
 
@@ -23,6 +24,7 @@ class UserlistController < ApplicationController
   def create
     @user = User.new(secure_params)
     if @user.save
+      UserMailer.welcome_email(@user).deliver_now
       redirect_to userlist_index_path, :notice => "User created."
     else
       redirect_to userlist_index_path, :notice => "User not created."
